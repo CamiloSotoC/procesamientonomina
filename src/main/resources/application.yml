@@ -1,0 +1,5 @@
+procesamientonomina:
+  paths:
+    input: "src/main/resources/input/empleados.csv"
+    valid-output: "src/main/resources/output/validos.csv"
+    invalid-output: "src/main/resources/output/invalidos.csv"
