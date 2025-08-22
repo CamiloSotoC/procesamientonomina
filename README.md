@@ -24,8 +24,8 @@ Esta aplicación permite procesar un archivo de empleados, validar la informaci�
      │   └─ resources/
      │       └─ application.yml
     
-    ```
-- Esta aplicación consta de 4 pasos:
+
+## 🫀 Procesos principales de la aplicación
 1. Leer el archivo de entrada y cargar el registro de todos los empleados
 2. Validar cada registro de empleado, si se encuentra un error el empleado es marcado con el error.
 3. La clase empleado tiene los métodos de cálculo para antiguedad, bonificación por antiguedad y salario final, es decir que al acceder a un empleado se le puede preguntar por esta información.
