@@ -80,9 +80,24 @@ Esta aplicación permite procesar un archivo CSV de empleados, validar la inform
   
   ```bash
   java -jar .\target\procesamientonomina-1.0.jar
-  ```
+  ``` 
+5. Ejemplo de ejecución exitosa:
 
-5. Archivos de Salida:
+  ```bash
+  PS C:\Users\Usuario\Documents\GitHub\procesamientonomina> java -jar .\target\procesamientonomina-1.0.jar
+  20:41:31.650 [main] INFO org.camilosotoc.services.PayrollService -- ### Procesamiento Nomina - INICIO ####
+  20:41:31.655 [main] INFO org.camilosotoc.config.AppConfig -- Cargando configuracion desde: src\main\resources\application.yml.
+  20:41:31.702 [main] INFO org.camilosotoc.utils.CsvUtil -- Leyendo CSV - Desde: src/main/resources/input/empleados.csv.
+  20:41:32.422 [main] INFO org.camilosotoc.utils.CsvUtil -- Leyendo CSV - Empleados registrados: 1000000.
+  20:41:32.422 [main] INFO org.camilosotoc.models.EmployeeValidator -- Validando los registros de empleados.
+  20:41:33.587 [main] INFO org.camilosotoc.services.PayrollService -- Registros de empleados validos: 225168.
+  20:41:33.587 [main] INFO org.camilosotoc.services.PayrollService -- Registros de empleados invalidos: 774832.
+  20:41:33.587 [main] INFO org.camilosotoc.utils.CsvUtil -- Escribiendo CSV - Empleados validos: src/main/resources/output/validos.csv.
+  20:41:34.502 [main] INFO org.camilosotoc.utils.CsvUtil -- Escribiendo CSV - Registros invalidos: src/main/resources/output/invalidos.csv.
+  20:41:36.010 [main] INFO org.camilosotoc.services.PayrollService -- ### Procesamiento Nomina - FIN ####
+  PS C:\Users\Usuario\Documents\GitHub\procesamientonomina>
+  ```
+6. La ejecución genera dos archivos de Salida:
 - Formato del archivos de salida válidos:
   ```
   Nombre,Apellido,RUT,Cargo,SalarioBase,Bonos,Descuentos,FechaIngreso,SalarioFinal
