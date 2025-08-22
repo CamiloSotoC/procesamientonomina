@@ -3,12 +3,10 @@ package org.camilosotoc.models;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.camilosotoc.utils.CsvUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

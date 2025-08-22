@@ -1,13 +1,9 @@
 package org.camilosotoc.config;
 
-import lombok.Getter;
-
-
 public record FilePaths(
         String inputPath,
         String validOutputPath,
-        String invalidOutputPath
-) {
+        String invalidOutputPath) {
     public FilePaths {
         if (inputPath == null || inputPath.isBlank())
             throw new IllegalArgumentException("inputPath no puede ser nulo o vacío");

@@ -2,7 +2,6 @@ package org.camilosotoc.config;
 
 import java.util.Map;
 
-import org.camilosotoc.utils.CsvUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
