@@ -1,6 +1,6 @@
-# 📊 Aplicación - Procesamiento de Nómina desde CSV
+# 📊 Aplicación - Procesamiento de Nómina
 
-Esta aplicación permite procesar un archivo CSV de empleados, validar la información de cada registro, calcular antiguedad, bonificaciones, salario final, y generar archivos CSV de salida con empleados válidos e inválidos.
+Esta aplicación permite procesar un archivo de empleados, validar la información de cada registro, calcular antiguedad, bonificaciones, salario final, y generar archivos de salida con empleados válidos e inválidos.
 
 ## 📂 Estructura del proyecto
 
@@ -25,8 +25,11 @@ Esta aplicación permite procesar un archivo CSV de empleados, validar la inform
      │       └─ application.yml
     
     ```
-Esta aplicación consta de 4 partes:
- - Primer paso: Leer el archivo de entrada
+- Esta aplicación consta de 4 pasos:
+1. Leer el archivo de entrada y cargar el registro de todos los empleados
+2. Validar cada registro de empleado, si se encuentra un error el empleado es marcado con el error.
+3. La clase empleado tiene los métodos de cálculo para antiguedad, bonificación por antiguedad y salario final, es decir que al acceder a un empleado se le puede preguntar por esta información.
+4. Retornar los archivos de salida, que son los registros de los empleados válidos(a quienes se les calcula la információn) e inválidos(cómo tienen error no se les calcula información). 
 
 
 ## ✨ Dependencias
@@ -145,7 +148,7 @@ Esta aplicación consta de 4 partes:
 - Salario final:
   SalarioFinal = (SalarioBase + Bonos + BonificaciónAntigüedad) - Descuentos
 
-## Requisitos técnicos
+## 📏 Requisitos técnicos
 
 - Generar un proyecto Maven con Java 8 o superior.
 - Manejo de archivos con BufferedReader / FileReader.
