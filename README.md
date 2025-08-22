@@ -25,8 +25,11 @@ Esta aplicación permite procesar un archivo CSV de empleados, validar la inform
      │       └─ application.yml
     
     ```
+Esta aplicación consta de 4 partes:
+ - Primer paso: Leer el archivo de entrada
 
-## Dependencias
+
+## ✨ Dependencias
 
 - Java 17
 - Lombok 1.18.38
@@ -35,7 +38,7 @@ Esta aplicación permite procesar un archivo CSV de empleados, validar la inform
 - Junit-jupiter 5.8.1
 - Mockito-core 5.5.0
 
-## 🚀 Instalación
+## ⚙️ Instalación
 
 1. Clona el repositorio:
 
@@ -50,73 +53,77 @@ Esta aplicación permite procesar un archivo CSV de empleados, validar la inform
    mvn clean package
    ```
 
-## Uso
+## 🚀 Uso
 
-1. La configuración de las rutas de los archivos de entrada y salida se encuentran el en application.yml.
+1. 🛤️ La configuración de las rutas de los archivos de entrada y salida se encuentran el en "application.yml".
 
-  ```
-  src/main/resources/application.yml
-  ```
+   ```
+   src/main/resources/application.yml
+   ```
 
-2. Esta es su configuración por defecto:
+2. 📝 Esta es su configuración por defecto:
 
-  ```
-  procesamientonomina:
+   ```
+   procesamientonomina:
      paths:
         input: "src/main/resources/input/empleados.csv"
         valid-output: "src/main/resources/output/validos.csv"
         invalid-output: "src/main/resources/output/invalidos.csv"
-  ```
+   ```
 
-3. Formato del archivo de entrada:
+3. 📝 El archivo de entrada debe tener el siguiente formato:
 
-  ```
-  Nombre,Apellido,RUT,Cargo,SalarioBase,Bonos,Descuentos,FechaIngreso
-  María,Muñoz,93922401-2,QA,497704,329207,178575,2025-08-11
-  Sofía,Rojas,81440572-3,Líder Técnico,444110,102613,374146,2025-07-17
-  ```
+   ```
+   Nombre,Apellido,RUT,Cargo,SalarioBase,Bonos,Descuentos,FechaIngreso
+   María,Muñoz,93922401-2,QA,497704,329207,178575,2025-08-11
+   Sofía,Rojas,81440572-3,Líder Técnico,444110,102613,374146,2025-07-17
+   ```
+   *El proyecto incluye un archivo de entrada de ejemplo "empleados.csv", en la siguiente ruta:
+   ```
+   src/main/resources/input/empleados.csv
+   ```
 
-4. Ejecutar la aplicación en la raíz del proyecto:
+4. 🟢 Ejecutar la aplicación en la raíz del proyecto:
   
-  ```bash
-  java -jar .\target\procesamientonomina-1.0.jar
-  ``` 
-5. Ejemplo de ejecución exitosa:
+   ```bash
+   java -jar .\target\procesamientonomina-1.0.jar
+   ``` 
+5. 📝 Ejemplo de ejecución exitosa:
 
-  ```bash
-  PS C:\Users\Usuario\Documents\GitHub\procesamientonomina> java -jar .\target\procesamientonomina-1.0.jar
-  20:41:31.650 [main] INFO org.camilosotoc.services.PayrollService -- ### Procesamiento Nomina - INICIO ####
-  20:41:31.655 [main] INFO org.camilosotoc.config.AppConfig -- Cargando configuracion desde: src\main\resources\application.yml.
-  20:41:31.702 [main] INFO org.camilosotoc.utils.CsvUtil -- Leyendo CSV - Desde: src/main/resources/input/empleados.csv.
-  20:41:32.422 [main] INFO org.camilosotoc.utils.CsvUtil -- Leyendo CSV - Empleados registrados: 1000000.
-  20:41:32.422 [main] INFO org.camilosotoc.models.EmployeeValidator -- Validando los registros de empleados.
-  20:41:33.587 [main] INFO org.camilosotoc.services.PayrollService -- Registros de empleados validos: 225168.
-  20:41:33.587 [main] INFO org.camilosotoc.services.PayrollService -- Registros de empleados invalidos: 774832.
-  20:41:33.587 [main] INFO org.camilosotoc.utils.CsvUtil -- Escribiendo CSV - Empleados validos: src/main/resources/output/validos.csv.
-  20:41:34.502 [main] INFO org.camilosotoc.utils.CsvUtil -- Escribiendo CSV - Registros invalidos: src/main/resources/output/invalidos.csv.
-  20:41:36.010 [main] INFO org.camilosotoc.services.PayrollService -- ### Procesamiento Nomina - FIN ####
-  PS C:\Users\Usuario\Documents\GitHub\procesamientonomina>
-  ```
+   ```bash
+    PS C:\Users\Usuario\Documents\GitHub\procesamientonomina> java -jar .\target\procesamientonomina-1.0.jar
+    20:41:31.650 [main] INFO org.camilosotoc.services.PayrollService -- ### Procesamiento Nomina - INICIO ####
+    20:41:31.655 [main] INFO org.camilosotoc.config.AppConfig -- Cargando configuracion desde: src\main\resources\application.yml.
+    20:41:31.702 [main] INFO org.camilosotoc.utils.CsvUtil -- Leyendo CSV - Desde: src/main/resources/input/empleados.csv.
+    20:41:32.422 [main] INFO org.camilosotoc.utils.CsvUtil -- Leyendo CSV - Empleados registrados: 1000000.
+    20:41:32.422 [main] INFO org.camilosotoc.models.EmployeeValidator -- Validando los registros de empleados.
+    20:41:33.587 [main] INFO org.camilosotoc.services.PayrollService -- Registros de empleados validos: 225168.
+    20:41:33.587 [main] INFO org.camilosotoc.services.PayrollService -- Registros de empleados invalidos: 774832.
+    20:41:33.587 [main] INFO org.camilosotoc.utils.CsvUtil -- Escribiendo CSV - Empleados validos: src/main/resources/output/validos.csv.
+    20:41:34.502 [main] INFO org.camilosotoc.utils.CsvUtil -- Escribiendo CSV - Registros invalidos: src/main/resources/output/invalidos.csv.
+    20:41:36.010 [main] INFO org.camilosotoc.services.PayrollService -- ### Procesamiento Nomina - FIN ####
+    PS C:\Users\Usuario\Documents\GitHub\procesamientonomina>
+   ```
 6. La ejecución genera dos archivos de Salida:
 - Formato del archivos de salida válidos:
-  ```
-  Nombre,Apellido,RUT,Cargo,SalarioBase,Bonos,Descuentos,FechaIngreso,SalarioFinal
-  Luis,Rojas,91203513-9,Analista,529909,44492,41225,2024-02-06,533176.00
-  ```
+   ```
+   Nombre,Apellido,RUT,Cargo,SalarioBase,Bonos,Descuentos,FechaIngreso,SalarioFinal
+   Luis,Rojas,91203513-9,Analista,529909,44492,41225,2024-02-06,533176.00
+   ```
 - Formato del archivos de salida inválidos:
-  ```
-  Nombre,Apellido,RUT,Cargo,SalarioBase,Bonos,Descuentos,FechaIngreso,MotivoError
-  María,Muñoz,93922401-2,QA,497704,329207,178575,2025-08-11,RUT duplicado
-  Sofía,Contreras,38103085-4,QA,369023,124221,364323,2024-01-17,Salario menor a $400.000
-  ```
-## Otros usos
+   ```
+   Nombre,Apellido,RUT,Cargo,SalarioBase,Bonos,Descuentos,FechaIngreso,MotivoError
+   María,Muñoz,93922401-2,QA,497704,329207,178575,2025-08-11,RUT duplicado
+   Sofía,Contreras,38103085-4,QA,369023,124221,364323,2024-01-17,Salario menor a $400.000
+   ```
+## 🧪 Test unitarios
 - Pruebas: Para ejecutar las pruebas unitarias, utiliza el siguiente comando:
 
-  ```bash
-  mvn test
-  ```
+   ```bash
+   mvn test
+   ```
 
-## Reglas de negocio
+## 📏 Reglas de negocio
 
 - RUT único
 - Salario base >= $400.000
@@ -128,7 +135,7 @@ Esta aplicación permite procesar un archivo CSV de empleados, validar la inform
 - +5% si entre 3 y 5 años
 - 0% si < 3 años
 
-## Cálculos requeridos
+## 🫀 Cálculos requeridos
 
 - Antigüedad: Calcular la cantidad de años desde la fecha de ingreso hasta hoy.
 - Bonificación por antigüedad (se suma a los bonos):
