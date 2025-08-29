@@ -21,29 +21,10 @@ public class PayrollService {
 
     public void processPayroll() throws Exception {
         logger.info("### Procesamiento Nomina - INICIO ####");
-        loadEmployees();
-        validPayroll();
-        unloadEmployees();
-        logger.info("### Procesamiento Nomina - FIN ####");
-    }
-
-    private void loadEmployees() throws Exception {
         employees = CsvUtil.readCsv();
-    }
-
-    private void validPayroll() {
         EmployeeValidator.validateAll(employees);
-        Map<Boolean, List<Employee>> processedEmployees = employees.stream()
-                .collect(Collectors.partitioningBy(e -> e.getError() == null));
-        validEmployees = processedEmployees.get(true);
-        logger.info("Registros de empleados validos: {}.", validEmployees.size());
-        invalidEmployees = processedEmployees.get(false);
-        logger.info("Registros de empleados invalidos: {}.", invalidEmployees.size());
-    }
-
-    private void unloadEmployees() throws IOException {
-        CsvUtil.writeCsv(validEmployees, true);
-        CsvUtil.writeCsv(invalidEmployees, false);
+        CsvUtil.writeCsv(employees);
+        logger.info("### Procesamiento Nomina - FIN ####");
     }
 
 }

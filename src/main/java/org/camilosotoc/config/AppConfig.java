@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AppConfig {
-    private static AppConfig instance;
     private final FilePaths filePaths;
 
     private static final Logger logger = LoggerFactory.getLogger(AppConfig.class);

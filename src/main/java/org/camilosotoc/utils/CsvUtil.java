@@ -86,35 +86,34 @@ public class CsvUtil {
         return new Employee(name, lastname, rut, position, baseSalary, bonus, discounts, inDate, null);
     }
 
-    public static void writeCsv(List<Employee> employees, boolean valid) throws IOException {
+    public static void writeCsv(List<Employee> employees) throws IOException {
 
-        String outputPath;
-        String header;
+        String validOutputPath = AppConfig.getInstance().getFilePaths().validOutputPath();
+        logger.info("Escribiendo CSV - Empleados validos: {}.", validOutputPath);
+        String headerValid = "Nombre,Apellido,RUT,Cargo,SalarioBase,Bonos,Descuentos,FechaIngreso,SalarioFinal\n";
 
-        if (valid) {
-            outputPath = AppConfig.getInstance().getFilePaths().validOutputPath();
-            logger.info("Escribiendo CSV - Empleados validos: {}.", outputPath);
-            header = "Nombre,Apellido,RUT,Cargo,SalarioBase,Bonos,Descuentos,FechaIngreso,SalarioFinal\n";
-        } else {
-            outputPath = AppConfig.getInstance().getFilePaths().invalidOutputPath();
-            header = "Nombre,Apellido,RUT,Cargo,SalarioBase,Bonos,Descuentos,FechaIngreso,MotivoError\n";
-            logger.info("Escribiendo CSV - Registros invalidos: {}.", outputPath);
-        }
+        String invalidOutputPath = AppConfig.getInstance().getFilePaths().invalidOutputPath();
+        String headerInvalid = "Nombre,Apellido,RUT,Cargo,SalarioBase,Bonos,Descuentos,FechaIngreso,MotivoError\n";
+        logger.info("Escribiendo CSV - Registros invalidos: {}.", invalidOutputPath);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(outputPath))) {
-            bw.write(header);
+        try (
+                BufferedWriter bwValid = new BufferedWriter(new FileWriter(validOutputPath));
+                BufferedWriter bwInvalid = new BufferedWriter(new FileWriter(invalidOutputPath));) {
+            bwValid.write(headerValid);
+            bwInvalid.write(headerInvalid);
             for (Employee e : employees) {
-                String line = valid
-                        ? String.format(Locale.US, "%s,%s,%s,%s,%.0f,%.0f,%.0f,%s,%.2f\n",
-                                e.getName(), e.getLastname(), e.getRut(), e.getPosition(),
-                                e.getBaseSalary(), e.getBonus(), e.getDiscounts(), e.getInDate(),
-                                e.getFinalSalary())
-                        : String.format(Locale.US, "%s,%s,%s,%s,%.0f,%.0f,%.0f,%s,%s\n",
-                                e.getName(), e.getLastname(), e.getRut(), e.getPosition(),
-                                e.getBaseSalary(), e.getBonus(), e.getDiscounts(), e.getInDate(),
-                                e.getError());
-                bw.write(line);
+                if (e.getError() == null) {
+                    bwValid.write(String.format(Locale.US, "%s,%s,%s,%s,%.0f,%.0f,%.0f,%s,%.2f\n",
+                            e.getName(), e.getLastname(), e.getRut(), e.getPosition(),
+                            e.getBaseSalary(), e.getBonus(), e.getDiscounts(), e.getInDate(),
+                            e.getFinalSalary()));
+                } else {
+                    bwInvalid.write(String.format(Locale.US, "%s,%s,%s,%s,%.0f,%.0f,%.0f,%s,%s\n",
+                            e.getName(), e.getLastname(), e.getRut(), e.getPosition(),
+                            e.getBaseSalary(), e.getBonus(), e.getDiscounts(), e.getInDate(),
+                            e.getError()));
+                }
             }
         }
     }
